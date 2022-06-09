@@ -1,0 +1,50 @@
+<?php
+/** @var Tomadevall\WeatherApp\Block\OpenWeather $block */
+?>
+<style>
+    th {
+        font-size: 10px;
+    }
+
+    td {
+        font-size: 10px;
+    }
+
+    th, td {
+        padding: 2px;
+    }
+
+    table, th, td {
+        border: 1px solid;
+        border-collapse: collapse;
+    }
+</style>
+<table>
+    <thead>
+        <tr>
+            <?php foreach ($block->getTableTitles() as $title) : ?>
+                <th>
+                    <?= ucfirst($title) ?>
+                </th>
+            <?php endforeach; ?>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($block->getHistoricalData() as $item) : ?>
+            <tr>
+                <td><?= $item->getId() ?></td>
+                <td><?= $item->getCity() ?></td>
+                <td><?= $item->getCountry() ?></td>
+                <td><?= $item->getDescription() ?></td>
+                <td><?= $item->getTemperature() ?></td>
+                <td><?= $item->getFeelsLike() ?></td>
+                <td><?= $item->getPressure() ?></td>
+                <td><?= $item->getHumidity() ?></td>
+                <td><?= $item->getWindSpeed() ?></td>
+                <td><?= $item->getSunrise() ?></td>
+                <td><?= $item->getSunset() ?></td>
+                <td><?= $item->getCreatedAt() ?></td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>

@@ -1,0 +1,17 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Tomadevall\WeatherApp\Api\OpenWeatherRepositoryInterface" type="Tomadevall\WeatherApp\Model\ResourceModel\OpenWeatherRepository"/>
+    <preference for="Tomadevall\WeatherApp\Api\Data\OpenWeatherInterface" type="Tomadevall\WeatherApp\Model\OpenWeather"/>
+    <virtualType name="WeatherHistoricalDataCollection" type="Tomadevall\WeatherApp\Ui\DataProvider\WeatherHistoricalData\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">weather_historical_data</argument>
+            <argument name="resourceModel" xsi:type="string">Tomadevall\WeatherApp\Model\ResourceModel\OpenWeather</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="tomadevll_weatherapp_weather_historical_data_grid_data_source" xsi:type="string">WeatherHistoricalDataCollection</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

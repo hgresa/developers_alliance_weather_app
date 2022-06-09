@@ -1,0 +1,71 @@
+<?php
+/** @var Tomadevall\WeatherApp\Block\OpenWeather $block */
+
+$city = $block->getCity();
+?>
+
+<form class="weather_form"
+      id="weather_form"
+      method="post"
+      action="<?= $block->getPostActionUrl() ?>"
+      autocomplete="off">
+    <fieldset class="fieldset">
+        <legend class="legend">
+            <span><?= __('Weather in your city') ?></span>
+        </legend>
+        <br>
+        <div class="field required">
+            <label for="name" class="label">
+                <span>
+                    <?= __('City') ?>
+                </span>
+            </label>
+            <div class="control">
+                <input type="text"
+                       name="city"
+                       id="city"
+                       value="<?= $city ?>"
+                       title="<?= __('City') ?>"
+                       class="input-text"
+                       data-validate="{required:true}">
+            </div>
+        </div>
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" class="action submit primary" title="<?php echo __('Submit') ?>">
+                <span><?= __('Submit') ?></span>
+            </button>
+        </div>
+    </div>
+    <br>
+    <div id="weather-data" class="weather-data">
+        <ul>
+            <li>City: <?= $city ?></li>
+            <li>Country: <?= $block->getCountry() ?></li>
+            <li>Description: <?= $block->getDescription() ?></li>
+            <li>Temperature (°C): <?= $block->getTemperature() ?></li>
+            <li>Feels Like (°C): <?= $block->getFeelsLike() ?></li>
+            <li>Pressure (hPa): <?= $block->getPressure() ?></li>
+            <li>Humidity (%): <?= $block->getHumidity() ?></li>
+            <li>Wind Speed (meter/sec): <?= $block->getWindSpeed() ?></li>
+            <li>Sunrise (UTC): <?= $block->getSunrise() ?></li>
+            <li>Sunset (UTC): <?= $block->getSunset() ?></li>
+        </ul>
+    </div>
+    <div class="primary">
+        <p>Weather Historical Data</p>
+        <button id="print-all" type="button" class="action primary" title="<?php echo __('Print All') ?>">
+            <span><?= __('Print All') ?></span>
+        </button>
+    </div>
+</form>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Tomadevall_WeatherApp/js/open-weather" : {
+            }
+        }
+    }
+</script>
